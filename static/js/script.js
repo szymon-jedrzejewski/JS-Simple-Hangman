@@ -1,4 +1,4 @@
-let wordToGuess = prompt('Enter word to guess.');
+let wordToGuess = prompt('Enter word to guess.').toUpperCase();
 
 console.log(wordToGuess);
 
@@ -10,9 +10,11 @@ console.log(guessedLetters);
 
 let wrongAnswers = 0;
 
+showEncryptedWord(wordToGuess);
+
 function getGuessedLetter() {
 
-    let guessedLetter = document.querySelector('#guessed-letter').value;
+    let guessedLetter = document.querySelector('#guessed-letter').value.toUpperCase();
 
     document.querySelector('#guessed-letter').value = '';
 
@@ -20,7 +22,7 @@ function getGuessedLetter() {
         if (guessedLetters.includes(guessedLetter)) {
             alert('This char was alredy used!');
         } else {
-            if (!isLetterInWord(guessedLetter) && !guessedLetters.includes(guessedLetter)) {
+            if (!wordToGuess.includes(guessedLetter) && !guessedLetters.includes(guessedLetter)) {
                 wrongAnswers++;
             }
             guessedLetters.push(guessedLetter);
@@ -45,24 +47,10 @@ function showHangman(numberOfIncorrectAnswers) {
     document.querySelector('#hangman').src = `static/images/${numberOfIncorrectAnswers}.png`;
 }
 
-function isLetterInWord(guessedChar) {
+function showEncryptedWord(wordToGuess) {
+    let encryptedWord = '';
     for (let i = 0; i < wordToGuess.length; i++) {
-        if (wordToGuess.charAt(i) === guessedChar) {
-            return true;
-        }
+        encryptedWord += '_ ';
     }
-    return false;
-}
-
-function wasLetterUsed(guessedLetter) {
-    for (let i = 0; i < guessedLetters.length; i++) {
-        if (guessedLetters[i] === guessedLetter) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function showEncryptedWord() {
-
+    document.querySelector('#encryptedWord').textContent = encryptedWord;
 }
