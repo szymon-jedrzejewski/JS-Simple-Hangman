@@ -20,24 +20,17 @@ function getGuessedLetter() {
         if (guessedLetters.includes(guessedLetter)) {
             alert('This char was alredy used!');
         } else {
+            if (!isLetterInWord(guessedLetter) && !guessedLetters.includes(guessedLetter)) {
+                wrongAnswers++;
+            }
             guessedLetters.push(guessedLetter);
-            console.log(guessedLetters);
         }
     } else {
         alert('You should enter one char!');
     }
 
-    console.log('guessedLetters: ' + guessedLetters);
-
-
-
     showGuessedLetters();
-    if (!isLetterInWord(guessedLetter)) {
-        wrongAnswers++;
-    }
-
     showHangman(wrongAnswers);
-
 }
 
 function showGuessedLetters() {
@@ -59,4 +52,17 @@ function isLetterInWord(guessedChar) {
         }
     }
     return false;
+}
+
+function wasLetterUsed(guessedLetter) {
+    for (let i = 0; i < guessedLetters.length; i++) {
+        if (guessedLetters[i] === guessedLetter) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function showEncryptedWord() {
+
 }
