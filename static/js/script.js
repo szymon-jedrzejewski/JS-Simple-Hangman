@@ -10,7 +10,7 @@ console.log(guessedLetters);
 
 let wrongAnswers = 0;
 
-showEncryptedWord(wordToGuess);
+let encryptedWord = showEncryptedWord(wordToGuess);
 
 function getGuessedLetter() {
 
@@ -33,6 +33,18 @@ function getGuessedLetter() {
 
     showGuessedLetters();
     showHangman(wrongAnswers);
+
+    let partlyDecryptedWord = document.querySelector('#encryptedWord').textContent;
+
+    let partlyReplacedWord = replaceEncryptedChar(guessedLetter, partlyDecryptedWord);
+
+    document.querySelector('#encryptedWord').textContent = partlyReplacedWord;
+
+    if (partlyReplacedWord === wordToGuess) {
+        alert('You win!')
+    } else if (wrongAnswers === 10) {
+        alert('You lost');
+    }
 }
 
 function showGuessedLetters() {
@@ -50,7 +62,20 @@ function showHangman(numberOfIncorrectAnswers) {
 function showEncryptedWord(wordToGuess) {
     let encryptedWord = '';
     for (let i = 0; i < wordToGuess.length; i++) {
-        encryptedWord += '_ ';
+        encryptedWord += '*';
     }
     document.querySelector('#encryptedWord').textContent = encryptedWord;
+    return encryptedWord;
+}
+
+function replaceEncryptedChar(guessedLetter, encryptedWord) {
+    let partlyDecryptedWord = encryptedWord.split('');
+    if (wordToGuess.includes(guessedLetter)) {
+        for (let i = 0; i < wordToGuess.length; i++) {
+            if (wordToGuess[i] === guessedLetter) {
+                partlyDecryptedWord[i] = guessedLetter;
+            }
+        }
+    }
+    return partlyDecryptedWord.join('');
 }
