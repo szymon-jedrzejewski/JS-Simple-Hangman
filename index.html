@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Hangman</h2>
+
+        <div class="hangman-picture">
+            <img id="hangman" src="static/images/0.png" alt="">
+        </div>
+
+        <div class="hangman-word-to-guess" id="word-to-guess"></div>
+
+        <div class="hangman-guessed-letters" id="guessed-letters">
+            <h2 id="letters"></h2>
+        </div>
+
+        <div class="hangman-input">
+            <input id="guessed-letter" type="text">
+            <button id="hangman-check-button">Check</button>
+        </div>
+    </div>
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>
