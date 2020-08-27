@@ -3,6 +3,7 @@ let wordToGuess = prompt('Enter word to guess.').toUpperCase();
 console.log(wordToGuess);
 
 document.querySelector('#hangman-check-button').addEventListener('click', getGuessedLetter);
+document.querySelector('#hangman-play-again-button').addEventListener('click', playAgain);
 
 let guessedLetters = [];
 
@@ -78,4 +79,8 @@ function replaceEncryptedChar(guessedLetter, encryptedWord) {
         }
     }
     return partlyDecryptedWord.join('');
+}
+
+function playAgain() {
+    location.reload();
 }
